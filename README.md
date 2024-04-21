@@ -47,7 +47,28 @@ Please visit the website for installation instructions:
 
 # How to build
 
-Please visit the [Wiki](https://github.com/krille-chan/fluffychat/wiki) for build instructions:
+You must use Java 17. (or higher, which I haven't tried). Run `git clean -idx` to reset the repo if you have tried using another Java version to build this project, because gradle doesn't know what is cache invalidation.
+
+Generate a key. Set a simple password (i hate security hype).
+
+```
+mkdir -p android
+keytool -genkey -v -keystore android/key.jks -alias key -keyalg RSA -keysize 2048 -validity 10000
+```
+
+Set build key file
+
+```
+env FDROID_KEY_PASS=the_simple_password_you_just_set scripts/prepare-android-release-simple.sh
+```
+
+Build
+
+```
+flutter build apk
+```
+
+If you like complication, visit the [Wiki](https://github.com/krille-chan/fluffychat/wiki) for build instructions:
 
 - https://github.com/krille-chan/fluffychat/wiki/How-To-Build
 
