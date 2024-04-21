@@ -77,7 +77,6 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -99,22 +98,26 @@ class Message extends StatelessWidget {
         previousEvent!.senderId == event.senderId &&
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
-    final textColor = ownMessage
-        ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onBackground;
+    final textColor = Theme.of(context).colorScheme.onBackground;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
     final displayEvent = event.getDisplayEvent(timeline);
+    final color;
+    if (ownMessage) {
+      color = displayEvent.status.isError
+          ? Colors.redAccent
+          : Theme.of(context).colorScheme.surfaceVariant;
+    } else {
+      color = Theme.of(context).colorScheme.surfaceVariant;
+    }
     const hardCorner = Radius.circular(4);
     const roundedCorner = Radius.circular(AppConfig.borderRadius);
     final borderRadius = BorderRadius.only(
-      topLeft: !ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
-      topRight: ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
-      bottomLeft:
-          !ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
-      bottomRight:
-          ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
+      topLeft: !ownMessage ? hardCorner : roundedCorner,
+      bottomLeft: !ownMessage ? hardCorner : roundedCorner,
+      topRight: ownMessage ? hardCorner : roundedCorner,
+      bottomRight: ownMessage ? hardCorner : roundedCorner,
     );
     final noBubble = {
           MessageTypes.Video,
@@ -126,12 +129,6 @@ class Message extends StatelessWidget {
       MessageTypes.File,
       MessageTypes.Audio,
     }.contains(event.messageType);
-
-    if (ownMessage) {
-      color = displayEvent.status.isError
-          ? Colors.redAccent
-          : Theme.of(context).colorScheme.primary;
-    }
 
     final resetAnimateIn = this.resetAnimateIn;
     var animateIn = this.animateIn;
