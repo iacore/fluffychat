@@ -75,9 +75,9 @@ class TypingIndicators extends StatelessWidget {
                 color: Theme.of(context).colorScheme.surfaceVariant,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(2),
-                  topRight: Radius.circular(AppConfig.borderRadius),
-                  bottomLeft: Radius.circular(AppConfig.borderRadius),
-                  bottomRight: Radius.circular(AppConfig.borderRadius),
+                  bottomLeft: Radius.circular(2),
+                  topRight: Radius.circular(2),
+                  bottomRight: Radius.circular(2),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -102,29 +102,15 @@ class _TypingDots extends StatefulWidget {
 class __TypingDotsState extends State<_TypingDots> {
   int _tick = 0;
 
-  late final Timer _timer;
-
   static const Duration animationDuration = Duration(milliseconds: 300);
 
   @override
   void initState() {
-    _timer = Timer.periodic(
-      animationDuration,
-      (_) {
-        if (!mounted) {
-          return;
-        }
-        setState(() {
-          _tick = (_tick + 1) % 4;
-        });
-      },
-    );
     super.initState();
   }
 
   @override
   void dispose() {
-    _timer.cancel();
     super.dispose();
   }
 

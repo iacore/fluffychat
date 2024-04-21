@@ -111,8 +111,8 @@ class Message extends StatelessWidget {
     } else {
       color = Theme.of(context).colorScheme.surfaceVariant;
     }
-    const hardCorner = Radius.circular(4);
-    const roundedCorner = Radius.circular(AppConfig.borderRadius);
+    const hardCorner = Radius.circular(2);
+    const roundedCorner = Radius.circular(2);
     final borderRadius = BorderRadius.only(
       topLeft: !ownMessage ? hardCorner : roundedCorner,
       bottomLeft: !ownMessage ? hardCorner : roundedCorner,
@@ -282,9 +282,14 @@ class Message extends StatelessWidget {
                                 ),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
+                                    border: ownMessage ? Border(
+                                      right: BorderSide(
+                                        width: 2,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                    ) : null,
                                   ),
                                   padding: noBubble || noPadding
                                       ? EdgeInsets.zero
