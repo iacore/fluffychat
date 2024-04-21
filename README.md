@@ -49,7 +49,7 @@ Please visit the website for installation instructions:
 
 You must use Java 17. (or higher, which I haven't tried). Run `git clean -idx` to reset the repo if you have tried using another Java version to build this project, because gradle doesn't know what is cache invalidation.
 
-Generate a key. Set a simple password (i hate security hype).
+(Optional. a public signing key is provided (see `android/key.jks`)) Generate a key. Set a simple password (i hate security hype).
 
 ```
 mkdir -p android
