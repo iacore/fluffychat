@@ -72,7 +72,7 @@ class TypingIndicators extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: topPadding),
               child: Material(
-                color: Theme.of(context).colorScheme.surfaceVariant,
+                // color: Theme.of(context).colorScheme.surfaceVariant,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(2),
                   bottomLeft: Radius.circular(2),
