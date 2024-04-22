@@ -103,14 +103,14 @@ class Message extends StatelessWidget {
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
     final displayEvent = event.getDisplayEvent(timeline);
-    final color;
-    if (ownMessage) {
-      color = displayEvent.status.isError
-          ? Colors.redAccent
-          : Theme.of(context).colorScheme.surfaceVariant;
-    } else {
-      color = Theme.of(context).colorScheme.surfaceVariant;
-    }
+    const color = Colors.transparent;
+    // if (ownMessage) {
+    //   color = displayEvent.status.isError
+    //       ? Colors.redAccent
+    //       : Theme.of(context).colorScheme.surfaceVariant;
+    // } else {
+    //   color = Theme.of(context).colorScheme.surfaceVariant;
+    // }
     const hardCorner = Radius.circular(2);
     const roundedCorner = Radius.circular(2);
     final borderRadius = BorderRadius.only(
@@ -340,7 +340,7 @@ class Message extends StatelessWidget {
                                                 child: AbsorbPointer(
                                                   child: ReplyContent(
                                                     replyEvent,
-                                                    ownMessage: ownMessage,
+                                                    ownMessage: false,
                                                     timeline: timeline,
                                                   ),
                                                 ),
