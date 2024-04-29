@@ -2,13 +2,13 @@ This is a opinionated fork of [fluffychat](https://github.com/krille-chan/fluffy
 
 Like all Google products, Dart is a failure. Therefore, this project will not be worked on unless it has to be used.
 
-![Screenshot](https://github.com/iacore/fluffychat/blob/main/assets/screenshot.png)
+<img alt="Screenshot" src="https://github.com/iacore/fluffychat/blob/main/assets/screenshot.png" height="512" />
 
 # How to build
 
 You must use Java 17. (or higher, which I haven't tried). Run `git clean -idx` to reset the repo if you have tried using another Java version to build this project, because gradle doesn't know what is cache invalidation.
 
-(Optional. a public signing key is provided (see `android/key.jks`)) Generate a key. Set a simple password (i hate security hype).
+(Optional. a public signing key (`android/key.jks`) is provided with the password 123456) Generate a key. Set a simple password (i hate security hype).
 
 ```
 mkdir -p android
